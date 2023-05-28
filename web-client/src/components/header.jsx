@@ -16,7 +16,8 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Header() {
+export default function Header({ openCart, setOpenCart }) {
+    console.log(openCart, setOpenCart);
     const [open, setOpen] = useState(false)
 
     return (
@@ -72,14 +73,14 @@ export default function Header() {
 
                                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                                     <div className="flow-root">
-                                        <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                                        <Link href="/auth/login" className="-m-2 block p-2 font-medium text-gray-900">
                                             Sign in
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className="flow-root">
-                                        <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                                        <Link href="/auth/register" className="-m-2 block p-2 font-medium text-gray-900">
                                             Create account
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -174,7 +175,7 @@ export default function Header() {
 
                                 {/* Cart */}
                                 <div className="ml-4 flow-root lg:ml-6">
-                                    <a href="#" className="group -m-2 flex items-center p-2">
+                                    <a href="#" onClick={() => setOpenCart(!openCart)} className="group -m-2 flex items-center p-2">
                                         <ShoppingBagIcon
                                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                             aria-hidden="true"

@@ -13,19 +13,19 @@ const product = {
     ],
     images: [
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+            src: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
             alt: 'Two each of gray, white, and black shirts laying flat.',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+            src: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
             alt: 'Model wearing plain black basic tee.',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+            src: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
             alt: 'Model wearing plain gray basic tee.',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+            src: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
             alt: 'Model wearing plain white basic tee.',
         },
     ],
@@ -46,14 +46,6 @@ const product = {
     ],
     description:
         'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-    highlights: [
-        'Hand cut and sewn locally',
-        'Dyed with our proprietary colors',
-        'Pre-washed & pre-shrunk',
-        'Ultra-soft 100% cotton',
-    ],
-    details:
-        'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -64,49 +56,55 @@ function classNames(...classes) {
 export default function ProductOverview() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+    const [selectedImg, setSelectedImg] = useState(product.images[3].src)
 
     return (
         <>
             <Header />
             <div className="bg-white dark:bg-black">
-                <div className="pt-6 flex flex-col md:flex-row md:content-start justify-center content-center">
+                <div className="w-full pt-6 md:px-24 flex flex-col md:flex-row md:content-start justify-center content-center md:justify-center">
                     {/* Image gallery */}
-                    <div className="flex flex-col w-full p-5">
-                        <div className="flex justify-center mb-7">
+                    <div className="flex flex-col p-5">
+                        <div className="flex justify-center md:justify-start mb-7">
                             <img
-                                src={product.images[3].src}
+                                src={selectedImg}
                                 alt={product.images[3].alt}
                                 className=""
                                 width={450}
                             />
                         </div>
 
+                        {/* FOTO VARIANT */}
                         <div>
-                            <div className="flex justify-center">
-                                <img
-                                    src={product.images[0].src}
-                                    alt={product.images[0].alt}
-                                    className="mr-7"
-                                    width={70}
-                                />
-                                <img
-                                    src={product.images[0].src}
-                                    alt={product.images[0].alt}
-                                    className="mr-7"
-                                    width={70}
-                                />
-                                <img
-                                    src={product.images[0].src}
-                                    alt={product.images[0].alt}
-                                    className=""
-                                    width={70}
-                                />
+                            <div className="flex justify-center md:justify-start">
+                                <RadioGroup className={"flex justify-start"}>
+                                    {product.images.map((data, index) =>
+                                        <RadioGroup.Option
+                                            key={index}
+                                            value={"color"}
+                                            onClick={(cb) => setSelectedImg(data.src)}
+                                            className={({ active, checked }) =>
+                                                classNames(
+                                                    active && checked ? 'ring p-0 mr-5 cursor-pointer max-w-xs' : 'cursor-pointer mr-5 max-w-xs'
+                                                )
+                                            }
+                                        >
+
+                                            <img
+                                                src={data.src}
+                                                alt={data.alt}
+                                                // className="mr-7"
+                                                width={70}
+                                            />
+                                        </RadioGroup.Option>
+                                    )}
+                                </RadioGroup>
                             </div>
                         </div>
                     </div>
 
                     {/* Product info */}
-                    <div className="mx-auto max-w-7xl p-5 md:p-0 md:mr-20 md:pt-5">
+                    <div className="max-w-7xl p-5 md:p-5 md:pt-5">
                         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
                         </div>
@@ -121,30 +119,8 @@ export default function ProductOverview() {
                                 </div>
                             </div>
 
-                            <div className="mt-10">
-                                <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
-                                <div className="mt-4">
-                                    <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                                        {product.highlights.map((highlight) => (
-                                            <li key={highlight} className="text-gray-400">
-                                                <span className="text-gray-600">{highlight}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="mt-10">
-                                <h2 className="text-sm font-medium text-gray-900">Details</h2>
-
-                                <div className="mt-4 space-y-6">
-                                    <p className="text-sm text-gray-600">{product.details}</p>
-                                </div>
-                            </div>
-
                             {/* Options */}
-                            <div className="mt-4 lg:row-span-3 md:mt-20">
+                            <div className="lg:row-span-3 mt-5">
                                 <h2 className="sr-only">Product information</h2>
                                 <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
 

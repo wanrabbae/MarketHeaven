@@ -22,10 +22,11 @@ export default function ProductList({ products }) {
                             </div>
                             <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
                             <p className="mt-1 text-lg font-medium text-gray-900">{product.price}</p>
-                            <button className="p-2 bg-indigo-600 text-white ">
-                                <ShoppingCartIcon color="white" />
-                                <span>Add to Cart</span>
-                            </button>
+                            <div className="flex justify-end">
+                                <button className="p-2 bg-indigo-600 text-white">
+                                    <ShoppingCartIcon width={20} color="white" />
+                                </button>
+                            </div>
                         </Link>
                     ))}
                 </div>
