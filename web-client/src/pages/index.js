@@ -7,14 +7,14 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 export default function index({ data }) {
-  const [openCart, setOpenCart] = useState(true)
+  // const [openCart, setOpenCart] = useState(true)
   return (
     <div>
-      <Header openCart={openCart} setOpenCart={setOpenCart} />
+      <Header />
       <Hero />
       {/* <ProductPromo /> */}
       <ProductList products={data} />
-      <Cart openCart={openCart} setOpenCart={setOpenCart} />
+      {/* <Cart /> */}
     </div>
   )
 }
